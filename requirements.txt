@@ -1,2 +1,12 @@
 mouse==0.7.1
 keyboard==0.13.4
+opencv-python
+#numpy
+pywin32
+pywinauto
+pillow
+#pyautogui
+pytesseract
+#pynput
+#mongoengine
+#zerorpc

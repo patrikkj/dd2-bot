@@ -9,11 +9,9 @@ from .win_io import WinIO
 class UserIO(metaclass=Singleton):
     # Event queue format:     
     # "queue_name" -> ({hotkey -> callback}, [events], is_active)
-    event_queues = {"default": [{}, [], True]}
 
     def __init__(self):
-        self.event_queue = SimpleQueue()
-
+        self.event_queues = {"default": [{}, [], True]}
         self.win_io = WinIO(self)
         self.mouse_io = MouseIO(self)
         self.keyboard_io = KeyboardIO(self)
@@ -47,7 +45,7 @@ class UserIO(metaclass=Singleton):
         pass
 
 # Alias
-singleton = UserIO()
-win_io = singleton.win_io
-mouse_io = singleton.mouse_io
-keyboard_io = singleton.keyboard_io
+user_io = UserIO()
+win_io = user_io.win_io
+mouse_io = user_io.mouse_io
+keyboard_io = user_io.keyboard_io
