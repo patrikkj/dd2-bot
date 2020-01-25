@@ -40,10 +40,6 @@ class UserIO(metaclass=Singleton):
     def clear_queue(self, event_queue):
         self.get_events(event_queue).clear()
 
-    # TODO
-    def _add_event_filter(self, event_queue, filter_):
-        pass
-
 # Alias
 user_io = UserIO()
 win_io = user_io.win_io

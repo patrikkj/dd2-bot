@@ -1,29 +1,22 @@
-import keyboard
+import sys
 import threading
+import queue
 import cv2.cv2 as cv2
-from .singleton import Singleton
-from queue import SimpleQueue
-
+import keyboard
 
 # Module level scope pointer
-import sys
 this = sys.modules[__name__]
 
 # Key event queue
 this.event_queues = {
-    "auto": [{}, SimpleQueue(), True],
-    "manual": [{}, SimpleQueue(), True]
+    "auto": [{}, queue.SimpleQueue(), True],
+    "manual": [{}, queue.SimpleQueue(), True]
 }
 def threaded_autoflush():
     while True:
-        item = q.get()
-        if item is None:
-            break
-        do_work(item)
-        q.task_done()
-
-threading.Thread(target = winevent.add_event_hook, args = (self._on_win_event, )).start()
-
+        _callable = this.event_queues['auto'][1].get()
+        _callable()
+threading.Thread(target = threaded_autoflush).start()
 
 # Dictionaries for tracking keyboard input
 this.pressed_keys = set()
@@ -47,7 +40,7 @@ this.suppress_windows = set()
 ###################
 
 # Hook listener callback to all keyboard events
-keyboard.hook(this._on_key_event)
+keyboard.hook(_on_key_event)
 
 # Conversion from key scan code to corresponding key name
 this.code_to_key = {
@@ -100,7 +93,7 @@ def _on_key_event(event):
             return
 
     # Enqueue action if found
-    for _, value in this.user_io.event_queues.items():
+    for _, value in this.event_queues.items():
         # Unpack
         hotkeys, event_queue, is_active = value
 
@@ -110,9 +103,9 @@ def _on_key_event(event):
 
         # Check for trigger
         if _pressed_keys in hotkeys:
-            event_queue.append(hotkeys[_pressed_keys])
+            event_queue.put(hotkeys[_pressed_keys])
 
-def _set_hotkey_state(suppress=None, hotkeys=None, input_=None):
+def set_hotkey_state(suppress=None, hotkeys=None, input_=None):
     """
     Sets hotkey state.
         suppress: Whether to consume key events or not.
@@ -120,12 +113,12 @@ def _set_hotkey_state(suppress=None, hotkeys=None, input_=None):
         input_: Whether input dialog is currently active.
     """
     if input_ is True:
-        this._set_hotkey_state(suppress=False, hotkeys=False)
+        set_hotkey_state(suppress=False, hotkeys=False)
         this.is_input_enabled = True
         return
     elif input_ is False:
         this.is_input_enabled = False
-        this._set_hotkey_state(suppress=True, hotkeys=True)
+        set_hotkey_state(suppress=True, hotkeys=True)
         return
 
     # Block any attempts to change hotkey state when input dialog is active
@@ -139,8 +132,8 @@ def _set_hotkey_state(suppress=None, hotkeys=None, input_=None):
             return
 
         # Rehook key event listener
-        keyboard.unhook(this._on_key_event)
-        keyboard.hook(this._on_key_event, suppress=suppress)
+        keyboard.unhook(_on_key_event)
+        keyboard.hook(_on_key_event, suppress=suppress)
         this.is_suppress_enabled = suppress
     
     if hotkeys is not None:
@@ -155,27 +148,27 @@ def _add_hotkeys(hotkey_to_callback, event_queue):
         this.user_io.event_queues[event_queue] = [hotkey_to_callback, [], True]
 
 def _remove_hotkeys(hotkey_to_callback, event_queue):
-    if event_queue in this.user_io.event_queues:
-        _dict = this.user_io.event_queues[event_queue][0]
+    if event_queue in this.event_queues:
+        _dict = this.event_queues[event_queue][0]
         _derived_dict = {k: v for k, v in _dict.items() if k not in hotkey_to_callback}
-        this.user_io.event_queues[event_queue][0] = _derived_dict
+        this.event_queues[event_queue][0] = _derived_dict
 
 def _encode_hotkey(hotkey):
     return tuple(sorted(this.key_to_code[key] for key in hotkey.split("+")))
 
 def _encode_hotkeys_dict(dict_):
-    return {this._encode_hotkey(k) : v for k, v in dict_.items()}
+    return {_encode_hotkey(k) : v for k, v in dict_.items()}
 
 def get_hotkeys(event_queue):
-    return this.user_io.event_queues[event_queue][0] if event_queue in this.user_io.event_queues else {}
+    return this.event_queues[event_queue][0] if event_queue in this.event_queues else {}
 
-def add_hotkeys(hotkey_to_callback, event_queue="default"):
-    return this._add_hotkeys(this._encode_hotkeys_dict(hotkey_to_callback), event_queue)
+def add_hotkeys(hotkey_to_callback, event_queue="auto"):
+    return _add_hotkeys(_encode_hotkeys_dict(hotkey_to_callback), event_queue)
 
-def remove_hotkeys(hotkey_to_callback, event_queue="default"):
-    return this._remove_hotkeys(this._encode_hotkeys_dict(hotkey_to_callback), event_queue)
+def remove_hotkeys(hotkey_to_callback, event_queue="auto"):
+    return _remove_hotkeys(_encode_hotkeys_dict(hotkey_to_callback), event_queue)
 
-def unpress_all_keys(self):
+def unpress_all_keys():
     this.pressed_keys.clear()
 
 def add_suppress_window(hwnd):
@@ -191,10 +184,10 @@ def _wait_until_trigger(hotkey_to_output, is_callback):
     # Reset trigger
     this.is_trigger = True
     this.trigger_output = None
-    this.unpress_all_keys()
+    unpress_all_keys()
 
     # # Rehook event hook
-    # this._set_key_suppression(True)
+    # _set_key_suppression(True)
     
     # Wait for trigger event
     while this.trigger_output is None:
@@ -204,7 +197,7 @@ def _wait_until_trigger(hotkey_to_output, is_callback):
     this.is_trigger = False
 
     # # Stop key event consumption
-    # this._set_key_suppression(False)
+    # _set_key_suppression(False)
 
     # Execute callback if return value is callback, else return value
     if is_callback:

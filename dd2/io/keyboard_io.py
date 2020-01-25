@@ -4,10 +4,10 @@ import dd2.io.helpers._keyboard_io as _keyboard_io
 
 
 def input_(string):
-    _win_io.set_focus_console()
-    _keyboard_io._set_hotkey_state(input_=True)
+    _win_io.set_focus(_win_io.get_console())
+    _keyboard_io.set_hotkey_state(input_=True)
     output = input(string)
-    _keyboard_io._set_hotkey_state(input_=False)
+    _keyboard_io.set_hotkey_state(input_=False)
     return output
 
 # Keyboard management
@@ -29,7 +29,7 @@ def write(string):
 
 # Key triggers
 def wait_until_trigger(hotkey_to_output, is_callback=True):
-    return this._wait_until_trigger(this._encode_hotkeys_dict(hotkey_to_output), is_callback)
+    return _keyboard_io._wait_until_trigger(_keyboard_io._encode_hotkeys_dict(hotkey_to_output), is_callback)
 
 
 
@@ -51,7 +51,7 @@ def select_from_menu(menu_dict, title=None, default=None):
     # Wait for user input
     print("\nSelect using [Ctrl] + [0-9] ...")
     #Adding triggers
-    _keyboard_io.wait_until_trigger(hotkey_to_action)
+    wait_until_trigger(hotkey_to_action)
 
 def select_from_options(options_dict, title=None, default=None):
     if title:
@@ -68,7 +68,7 @@ def select_from_options(options_dict, title=None, default=None):
     # Wait for user input
     print("\nSelect using [Ctrl] + [0-9] ...")
     #Adding triggers
-    selected = _keyboard_io.wait_until_trigger(hotkey_to_return_value, is_callback=False)
+    selected = wait_until_trigger(hotkey_to_return_value, is_callback=False)
     # Print selected option
     print(f"Selected: {selected}\n")
     # Return value

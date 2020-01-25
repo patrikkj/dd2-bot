@@ -1,7 +1,9 @@
 import cv2.cv2 as cv2
-from . import text_search
-from numpy import linspace
-
+import dd2.io.file_io as file_io
+import dd2.io.keyboard_io as keyboard_io
+import dd2.io.mouse_io as mouse_io
+import dd2.io.screen_io as screen_io
+import dd2.utils.text_search as text_search
 
 DU_FIELD = (1150, 106, 70, 17)
 WAVE_FIELD = (1130, 35, 40, 20)
@@ -125,21 +127,18 @@ def get_mob_count(hwnd):
 
 
 # Images
-def extract_image_region_interactive(hwnd, options=None):
+def extract_image_region_interactive(hwnd):
     print("\nIMAGE EXTRACTION")
 
      # Capture boundng box
     print("Hover top left corner and press [HOME] ...")
-    keyboard.wait("home") 
+    keyboard_io.wait("home") 
     x1, y1 = mouse_io.get_mouse_pos(hwnd=hwnd)
 
     print("Hover bottom right corner and press [HOME] ...")
-    keyboard.wait("home") 
+    keyboard_io.wait("home") 
     x2, y2 = mouse_io.get_mouse_pos(hwnd=hwnd)
     dx, dy = x2 - x1, y2 - y1
 
-    image = capture_region(x1, y1, dx, dy, hwnd=hwnd)
-    cv2.imwrite()
-    print(f"Extracted text: {result}")
-
-
+    image = screen_io.capture_region(x1, y1, dx, dy, hwnd=hwnd)
+    file_io.save_template(image, x1, y1, dx, dy)

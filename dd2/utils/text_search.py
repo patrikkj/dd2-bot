@@ -4,8 +4,9 @@ import numpy as np
 import pytesseract
 from PIL import Image
 from matplotlib import pyplot as plt
+import dd2.io.screen_io as screen_io
+import dd2.io.mouse_io as mouse_io
 # from pytesseract import Output, image_to_string
-from dd2.io.user_io import win_io, mouse_io
 
 
 def _rescale():
@@ -106,8 +107,8 @@ def _extract_text(image, options=None):
 
 def extract_text_region(x, y, dx, dy, hwnd=None, options=None):
     if hwnd:
-        return _extract_text(win_io.capture_region(x, y, dx, dy, hwnd=hwnd), options=options)
-    return _extract_text(win_io.capture_region(x, y, dx, dy), options=options)
+        return _extract_text(screen_io.capture_region(x, y, dx, dy, hwnd=hwnd), options=options)
+    return _extract_text(screen_io.capture_region(x, y, dx, dy), options=options)
 
 def extract_text_file(relative_filepath, options=None):
     return _extract_text(Image.open(relative_filepath), options=options)

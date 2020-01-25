@@ -33,6 +33,7 @@ def _initialize_hotkeys(session):
         "f8": lambda *_: print(utils.get_DU(session['client_active'][0])),
         "f9": lambda *_: print(utils.get_wave_count(session['client_active'][0])),
         "f10": lambda *_: print(utils.get_mob_count(session['client_active'][0])),
+        "f11": lambda *_: print(utils.extract_image_region_interactive(session['client_active'][0])),
         "ctrl+1": lambda *_: print(mouse_io.get_mouse_pos()),
         "ctrl+esc": lambda *_: (print("EXIT"), EXIT)[1]
     }
