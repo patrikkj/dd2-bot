@@ -4,10 +4,10 @@ import numpy as np
 import pytesseract
 from PIL import Image
 from matplotlib import pyplot as plt
-import dd2.io.screen_io as screen_io
-import dd2.io.mouse_io as mouse_io
-# from pytesseract import Output, image_to_string
+from dd2.io import file_io, keyboard_io, mouse_io, screen_io, win_io
+from dd2.io.helpers import _file_io, _keyboard_io, _mouse_io, _screen_io, _win_io
 
+# from pytesseract import Output, image_to_string
 
 def _rescale():
     pass
@@ -101,9 +101,10 @@ def _extract_text(image, options=None):
     # return pytesseract.image_to_string(image, config='digits')
     if _options['config_digits']:
         # return pytesseract.image_to_string(image, config='tessedit_char_whitelist="0123456789,/ "')
-        return pytesseract.image_to_string(image, config='--psm 10 --oem 3 -c tessedit_char_whitelist=0123456789/,.')
+        output = pytesseract.image_to_string(image, config='--psm 10 --oem 3 -c tessedit_char_whitelist=0123456789/,.')
     else:
-        return pytesseract.image_to_string(image, lang="eng")
+        output = pytesseract.image_to_string(image, lang="eng")
+    return output
 
 def extract_text_region(x, y, dx, dy, hwnd=None, options=None):
     if hwnd:

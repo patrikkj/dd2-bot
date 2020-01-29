@@ -29,13 +29,13 @@ def _callable_wrapper(callable_):
         hwnd: Window handle
         title: Window title
     """
-    print("Creating callback")
+    # print("Creating callback")
     def _callback(hWinEventHook, event, hwnd, idObject, idChild, dwEventThread, dwmsEventTime):
         nonlocal callable_
         length = user32.GetWindowTextLengthW(hwnd)
         title = ctypes.create_unicode_buffer(length + 1)
         user32.GetWindowTextW(hwnd, title, length + 1)
-        print("Running _callback")
+        # print("Running _callback")
         # Execute inner function
         callable_(eventTypes.get(event, hex(event)), hwnd, title.value)
     return _callback

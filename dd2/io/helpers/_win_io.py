@@ -6,17 +6,7 @@ import win32con
 import win32console
 import win32gui
 
-# Hook listener callback to all window events on separate thread
-# import threading
-# import dd2.io.helpers._winevent as _winevent
-# threading.Thread(target = _winevent.add_event_hook, args = (self._on_win_event, )).start()
 
-# def _on_win_event(event_type, hwnd, title):
-#     print("Firing win event")
-#     if hwnd in self.user_io.keyboard_io.suppress_windows:
-#         self.user_io.keyboard_io.set_hotkey_state(suppress=True, hotkeys=True)
-#     else:
-#         self.user_io.keyboard_io.set_hotkey_state(suppress=False, hotkeys=False)
 
 
 # Client / screen conversion
@@ -30,10 +20,17 @@ def screen_to_client(hwnd, coords):
 def get_console():
     return win32console.GetConsoleWindow()
 
-def set_focus(hwnd):
+def set_focus(hwnd, foreground=True):
     app = pywinauto.application.Application().connect(handle=hwnd)
     window = app.window(handle=hwnd)
     window.set_focus()
+    if foreground:
+        win32gui.SetForegroundWindow(hwnd)
+
+def get_hwnds(filter_=lambda title: True):
+    windows = []
+    win32gui.EnumWindows(lambda hwnd, windows: windows.append((hwnd, win32gui.GetWindowText(hwnd))), windows)
+    return [hwnd for hwnd, title in windows if filter_(title)]
 
 def get_windows(filter_=lambda title: True):
     windows = []
@@ -47,6 +44,9 @@ def get_child_windows(parent_hwnd, filter_=lambda title: True):
 
 def set_console_title(title):
     ctypes.windll.kernel32.SetConsoleTitleW(title)
+
+def get_window_title(hwnd):
+    return win32gui.GetWindowText(hwnd)
 
 def get_screen_resolution():
     width = win32api.GetSystemMetrics(0)

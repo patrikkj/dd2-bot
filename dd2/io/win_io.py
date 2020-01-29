@@ -1,6 +1,14 @@
 
 import time
-import dd2.io.helpers._win_io as _win_io
+import threading
+
+from dd2.io.helpers import _file_io, _keyboard_io, _mouse_io, _screen_io, _win_io, _winevent
+
+
+def add_win_event_hook(callable_):
+    '''Callable of type (event_type, hwnd, title) -> ...'''
+    # Hook listener callback to all window events on separate thread
+    threading.Thread(target=_winevent.add_event_hook, args=(callable_, )).start()
 
 
 # Client / screen conversion
@@ -12,14 +20,27 @@ def screen_to_client(hwnd, coords):
 
 
 # Window API
+def set_focus(hwnd, foreground=True):
+    _win_io.set_focus(hwnd, foreground=foreground)
+
 def set_focus_console():
     _win_io.set_focus(_win_io.get_console())
 
+def set_console_position(x, y, dx, dy):
+    return _win_io.set_window_details(_win_io.get_console(), x, y, dx, dy)
+
+def get_window_title(hwnd):
+    return _win_io.get_window_title(hwnd)
+
+
+def get_hwnds(identifier=""):
+    return _win_io.get_hwnds(filter_=lambda title: identifier in title)
+
 def get_windows(identifier=""):
-    return _win_io.get_windows(filter=lambda title: identifier in title)
+    return _win_io.get_windows(filter_=lambda title: identifier in title)
 
 def get_child_windows(parent_hwnd, identifier=""):
-    return _win_io.get_child_windows(parent_hwnd, filter=lambda title: identifier in title)
+    return _win_io.get_child_windows(parent_hwnd, filter_=lambda title: identifier in title)
 
 
 # Loops

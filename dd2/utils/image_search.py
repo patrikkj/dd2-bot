@@ -6,8 +6,8 @@ import numpy as np
 import win32gui
 from PIL import ImageGrab
 
-import dd2.io.file_io as file_io
-from dd2.io.user_io import keyboard_io, mouse_io, user_io, win_io
+from dd2.io import file_io, keyboard_io, mouse_io, screen_io, win_io
+from dd2.io.helpers import _file_io, _keyboard_io, _mouse_io, _screen_io, _win_io
 
 WINDOW_NAME = "Images"
 

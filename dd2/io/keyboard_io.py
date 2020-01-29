@@ -1,7 +1,8 @@
 import keyboard
+import time
 import dd2.io.helpers._win_io as _win_io
-import dd2.io.helpers._keyboard_io as _keyboard_io
 
+from dd2.io.helpers import _file_io, _keyboard_io, _mouse_io, _screen_io, _win_io
 
 def input_(string):
     _win_io.set_focus(_win_io.get_console())
@@ -17,8 +18,14 @@ def press(key):
 def release(key):
     keyboard.release(key)
 
-def press_and_release(keys):
-    keyboard.press_and_release(keys)
+def press_and_release(keys, duration=0):
+    keyboard.press(keys)
+    if duration:
+        time.sleep(duration)
+    keyboard.release(keys)
+
+def send(keys):
+    keyboard.send(keys)
 
 def wait(key):
     keyboard.wait(key)
@@ -27,10 +34,17 @@ def write(string):
     keyboard.write(string)
 
 
+# Hotkeys
+def add_hotkeys(hotkey_to_callback, event_queue="auto"):
+    return _keyboard_io.add_hotkeys(_keyboard_io.encode_hotkeys_dict(hotkey_to_callback), event_queue)
+
+def remove_hotkeys(hotkey_to_callback, event_queue="auto"):
+    return _keyboard_io.remove_hotkeys(_keyboard_io.encode_hotkeys_dict(hotkey_to_callback), event_queue)
+
+
 # Key triggers
 def wait_until_trigger(hotkey_to_output, is_callback=True):
-    return _keyboard_io._wait_until_trigger(_keyboard_io._encode_hotkeys_dict(hotkey_to_output), is_callback)
-
+    return _keyboard_io.wait_until_trigger(_keyboard_io.encode_hotkeys_dict(hotkey_to_output), is_callback)
 
 
 # Print operations
@@ -72,4 +86,4 @@ def select_from_options(options_dict, title=None, default=None):
     # Print selected option
     print(f"Selected: {selected}\n")
     # Return value
-    return selected
+    return selectedremove_hotkeys

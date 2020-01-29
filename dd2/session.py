@@ -13,6 +13,11 @@ class Session(dict):
     # 'client_active'     : (launcher_hwnd, window_title)
 
 
+    #    GAME
+    # --- --- --- 
+    # 'state'             : One of the states listed in 'state.py'
+    # 'wave'              : Tuple of the form (current, total) or None
+
 
     #      CHARACTERS
     # --- --- --- --- --- ---
@@ -33,6 +38,10 @@ class Session(dict):
         '''Implements thread-safe writing to session'''
         with self.lock:
             return super().__setitem__(key, value)
+
+    def set(self, key, value):
+        print(f"Setting {key} to: {value}")
+        return self.__setitem__(key, value)
 
     def display(self):
         nested_print(self)

@@ -7,16 +7,26 @@ import keyboard
 # Module level scope pointer
 this = sys.modules[__name__]
 
+# Status codes
+this.EXIT = 0xF1
+this.status_code = None
+
 # Key event queue
 this.event_queues = {
     "auto": [{}, queue.SimpleQueue(), True],
     "manual": [{}, queue.SimpleQueue(), True]
 }
 def threaded_autoflush():
-    while True:
-        _callable = this.event_queues['auto'][1].get()
-        _callable()
-threading.Thread(target = threaded_autoflush).start()
+    return_value = None
+    while return_value != this.EXIT:
+        try:
+            return_value = this.event_queues['auto'][1].get()()
+        except Exception as e:
+            print(f"ERROR: {e}")
+        print(f">>> {return_value}")
+    this.status_code = this.EXIT
+    sys.exit(0)
+threading.Thread(target=threaded_autoflush).start()
 
 # Dictionaries for tracking keyboard input
 this.pressed_keys = set()
@@ -38,50 +48,55 @@ this.suppress_windows = set()
 ####################
 # Initialization
 ###################
+def init():
+    # Hook listener callback to all keyboard events
+    keyboard.hook(_on_key_event)
 
-# Hook listener callback to all keyboard events
-keyboard.hook(_on_key_event)
+    # Conversion from key scan code to corresponding key name
+    this.code_to_key = {
+        (1, False): "esc",      (12, False): "plus",    (53, False): "minus",   (28, False): "enter", 
+        (29, False): "ctrl",    (56, False): "alt",     (42, False): "shift",
+        (72, False): "up",      (80, False): "down",    (75, False): "left",    (77, False): "right",
+        (59, False): "f1",      (60, False): "f2",      (61, False): "f3",      (62, False): "f4",
+        (63, False): "f5",      (64, False): "f6",      (65, False): "f7",      (66, False): "f8",
+        (67, False): "f9",      (68, False): "f10",     (87, False): "f11",     (88, False): "f12",
+        (79, True): "numpad_1", (80, True): "numpad_2", (81, True): "numpad_3", (75, True): "numpad_4",
+        (76, True): "numpad_5", (77, True): "numpad_6", (71, True): "numpad_7", (72, True): "numpad_8",
+        (73, True): "numpad_9", (82, True): "numpad_0",
+    }
 
-# Conversion from key scan code to corresponding key name
-this.code_to_key = {
-    1: "esc",12: "plus", 53: "minus", 28: "enter", 
-    29: "ctrl", 56: "alt", 42: "shift",
-    72: "up", 80: "down", 75: "left", 77: "right",
-    59: "f1", 60: "f2", 61: "f3", 62: "f4",
-    63: "f5", 64: "f6", 65: "f7", 66: "f8",
-    67: "f9", 68: "f10", 87: "f11", 88: "f12"
-}
+    # Dictionary of all lower case ascii letters
+    _ascii_dict = {(keyboard.key_to_scan_codes(chr(i))[0], False): chr(i) for i in range(97, 123)}
+    this.code_to_key.update(_ascii_dict)
 
-# Dictionary of all lower case ascii letters
-_ascii_dict = {keyboard.key_to_scan_codes(chr(i))[0]: chr(i) for i in range(97, 123)}
-this.code_to_key.update(_ascii_dict)
+    # Dictionary of all numeric characters
+    _numeric_dict = {(keyboard.key_to_scan_codes(chr(i))[0], False): chr(i) for i in range(48, 58)}
+    this.code_to_key.update(_numeric_dict)
 
-# Dictionary of all numeric characters
-_numeric_dict = {keyboard.key_to_scan_codes(chr(i))[0]: chr(i) for i in range(48, 58)}
-this.code_to_key.update(_numeric_dict)
+    # Populate dictionary mapping from key to code
+    this.key_to_code = {v : k for k, v in this.code_to_key.items()}
 
-# Populate dictionary mapping from key to code
-this.key_to_code = {v : k for k, v in this.code_to_key.items()}
-
-###################
+    ###################
 
 
 
 def _on_key_event(event):
+    # print(vars(event))
+
     # Break if hotkeys are disabled
     if not this.is_hotkeys_enabled:
         return
 
     # Register event
-    if event.scan_code not in this.code_to_key:
-        print(f"Key not registered: {event.name} [Code {event.scan_code}]")
+    if (event.scan_code, event.is_keypad) not in this.code_to_key:
+        # print(f"Key not registered: {event.name} [Code {event.scan_code}, Keypad {event.is_keypad}]")
         return
 
     # Update set of pressed keys to reflect key status
     if event.event_type == "down":
-        this.pressed_keys.add(event.scan_code)
-    elif event.scan_code in this.pressed_keys:
-        this.pressed_keys.remove(event.scan_code)
+        this.pressed_keys.add((event.scan_code, event.is_keypad))
+    elif (event.scan_code, event.is_keypad) in this.pressed_keys:
+        this.pressed_keys.remove((event.scan_code, event.is_keypad))
 
     # Encode key presses for dictionary lookup
     _pressed_keys = tuple(sorted(this.pressed_keys))
@@ -141,32 +156,26 @@ def set_hotkey_state(suppress=None, hotkeys=None, input_=None):
         this.is_hotkeys_enabled = hotkeys
 
 # Hotkeys
-def _add_hotkeys(hotkey_to_callback, event_queue):
-    if event_queue in this.user_io.event_queues:
-        this.user_io.event_queues[event_queue][0].update(hotkey_to_callback)
+def add_hotkeys(hotkey_to_callback, event_queue):
+    if event_queue in this.event_queues:
+        this.event_queues[event_queue][0].update(hotkey_to_callback)
     else:
-        this.user_io.event_queues[event_queue] = [hotkey_to_callback, [], True]
+        this.event_queues[event_queue] = [hotkey_to_callback, [], True]
 
-def _remove_hotkeys(hotkey_to_callback, event_queue):
+def remove_hotkeys(hotkey_to_callback, event_queue):
     if event_queue in this.event_queues:
         _dict = this.event_queues[event_queue][0]
         _derived_dict = {k: v for k, v in _dict.items() if k not in hotkey_to_callback}
         this.event_queues[event_queue][0] = _derived_dict
 
-def _encode_hotkey(hotkey):
+def encode_hotkey(hotkey):
     return tuple(sorted(this.key_to_code[key] for key in hotkey.split("+")))
 
-def _encode_hotkeys_dict(dict_):
-    return {_encode_hotkey(k) : v for k, v in dict_.items()}
+def encode_hotkeys_dict(dict_):
+    return {encode_hotkey(k) : v for k, v in dict_.items()}
 
 def get_hotkeys(event_queue):
     return this.event_queues[event_queue][0] if event_queue in this.event_queues else {}
-
-def add_hotkeys(hotkey_to_callback, event_queue="auto"):
-    return _add_hotkeys(_encode_hotkeys_dict(hotkey_to_callback), event_queue)
-
-def remove_hotkeys(hotkey_to_callback, event_queue="auto"):
-    return _remove_hotkeys(_encode_hotkeys_dict(hotkey_to_callback), event_queue)
 
 def unpress_all_keys():
     this.pressed_keys.clear()
@@ -178,7 +187,7 @@ def remove_suppress_window(hwnd):
     if hwnd in this.suppress_windows:
         this.suppress_windows.remove(hwnd)
 
-def _wait_until_trigger(hotkey_to_output, is_callback):
+def wait_until_trigger(hotkey_to_output, is_callback):
     this.triggers = hotkey_to_output
     
     # Reset trigger
@@ -204,3 +213,5 @@ def _wait_until_trigger(hotkey_to_output, is_callback):
         return this.trigger_output()
     else:
         return this.trigger_output
+
+init()
