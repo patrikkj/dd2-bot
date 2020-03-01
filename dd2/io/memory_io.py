@@ -1,46 +1,5 @@
-from dd2.io.helpers import _file_io, _keyboard_io, _mouse_io, _screen_io, _win_io, _memory_io
-from enum import Enum, auto
-
-class Variable(Enum):
-    PLAYER_X = auto()
-    PLAYER_Y = auto()
-    PLAYER_Z = auto()
-    PLAYER_DU = auto()
-
-    CAMERA_X = auto()
-    CAMERA_Y = auto()
-    CAMERA_Z = auto()
-    PITCH = auto()
-    YAW = auto()
-    FOV = auto()
-    ZOOM = auto()
-
-    DU_CURRENT = auto()
-    DU_MAX = auto()
-    MOB_COUNT_ALIVE = auto()
-
-# Preprocessing
-normalize_yaw = lambda yaw: yaw % 2
-
-variable_metadata = { 
-    # VARIABLE   ->   ([Memory offsets], dtype, preprocessing)
-    Variable.PLAYER_X: ([0xB0, 0x228, 0x358, 0x28C, 0xF8, 0x844, 0x0, 0x015C56E0], 'f', None),
-    Variable.PLAYER_Y: ([0xB4, 0x228, 0x358, 0x28C, 0xF8, 0x844, 0x0, 0x015C56E0], 'f', None),
-    Variable.PLAYER_Z: ([0xB8, 0x228, 0x358, 0x28C, 0xF8, 0x844, 0x0, 0x015C56E0], 'f', None),
-    Variable.PLAYER_DU: ([0xE84, 0x0, 0x950, 0x0, 0x015C56E0], 'i', None),
-
-    Variable.CAMERA_X: ([0x58, 0x0, 0x184, 0x4F8, 0x134, 0x0, 0x015C5738], 'f', None),
-    Variable.CAMERA_Y: ([0x5C, 0x0, 0x184, 0x4F8, 0x134, 0x0, 0x015C5738], 'f', None),
-    Variable.CAMERA_Z: ([0x60, 0x0, 0x184, 0x4F8, 0x134, 0x0, 0x015C5738], 'f', None),
-    Variable.PITCH: ([0x638, 0x0, 0x184, 0x4F8, 0x134, 0x0, 0x015C5738], 'f', None),
-    Variable.YAW: ([0x600, 0x0, 0x184, 0x4F8, 0x134, 0x0, 0x015C5738], 'f', normalize_yaw),
-    Variable.FOV: ([0x298, 0x0, 0x184, 0x4F8, 0x134, 0x0, 0x015C5738], 'f', None),
-    Variable.ZOOM: ([0x914, 0x0, 0x184, 0x4F8, 0x134, 0x0, 0x015C5738], 'f', None),
-
-    Variable.DU_CURRENT: ([0x548, 0x0, 0x790, 0x0, 0x015C56E0], 'i', None),
-    Variable.DU_MAX: ([0x54C, 0x0, 0x790, 0x0, 0x015C56E0], 'i', None),
-    Variable.MOB_COUNT_ALIVE: ([0x7C, 0x6C0, 0x134, 0x0, 0x015C5738], 'i', None)
-}
+from .helpers import _memory_io
+import numpy as np
 
 
 class MemoryData():
@@ -48,37 +7,105 @@ class MemoryData():
         self.variable = variable
         self.process_handle = process_handle
         self.base_address = base_address
+
         self.pointer_address = None
         self.value = None
-        self.offsets = variable_metadata[self.variable][0]
-        self.dtype = variable_metadata[self.variable][1]
-        self.preprocessing = variable_metadata[self.variable][2]
         
-        self.update_pointer()
-        self.fetch()
+        self.update()
+        self.read_noupdate()
     
-    def fetch(self):
-        self.value = _memory_io.read_variable(self.process_handle, self.pointer_address, dtype=self.dtype)
-        return self.preprocessing(self.value) if self.preprocessing else self.value
 
-    def update_pointer(self):
-        self.pointer_address = _memory_io.find_pointer_address(self.process_handle, self.base_address, self.offsets)
+    def update(self):
+        self.pointer_address = _memory_io.find_pointer_address(self.process_handle, self.base_address, self.variable.full_offset)
+        # print(f"Update MemoryData pointer addr: {hex(self.pointer_address)}")
 
-    def get_update(self):
-        self.update_pointer()
-        return self.fetch()
+    # Reading
+    def read(self):
+        self.update()
+        return self.read_noupdate()
+
+    def read_noupdate(self):
+        self.value = _memory_io.read_variable(self.process_handle, self.pointer_address, dtype=self.variable.dtype)
+        return self.variable.transform(self.value) if self.variable.transform else self.value
+
+    # Writing
+    def write(self, value):
+        self.update()
+        return self.write_noupdate(value)
+
+    def write_noupdate(self, value):
+        _value = self.variable.inv_transform(value) if self.variable.inv_transform else value
+        _memory_io.write_variable(self.process_handle, self.pointer_address, _value, dtype=self.variable.dtype)
+
+
+class MemoryDataBlock():
+    def __init__(self, process_handle, base_address, *variables, numpify=False):
+        self.process_handle = process_handle
+        self.base_address = base_address
+        self.variables = variables
+
+        self.block_address = None
+        self.value = None
+        self.numpify = numpify
+
+        # Verify that variables are contained by a single memory struct
+        self.block_offset = self.variables[0].block_offset
+        if len(set(v.block_offset for v in self.variables)) != 1:
+            raise ValueError("All variables in MemoryDataBlock must point to the same memory struct.")
+        self.block_offset = (0, ) + self.block_offset
+
+    
+    def update(self, process_handle=None):
+        # for i in range(1, len(self.block_offset) + 1):
+        #     sub_arr = self.block_offset[-i:]
+        #     addr = _memory_io.find_pointer_address(self.process_handle, self.base_address, sub_arr)
+        #     print(f"Offsets: {[hex(o) for o in sub_arr]}")
+        #     print(f"Address: {hex(addr)}")
+        process_handle = process_handle if process_handle else self.process_handle
+        self.block_address = _memory_io.find_pointer_address(process_handle, self.base_address, self.block_offset)
+        # print(f"Update MemoryData block addr: {hex(self.block_address)}")
+
+    # Reading
+    def read(self, *variables, numpify=None):
+        numpify = numpify if numpify else self.numpify
+        self.update()
+        data = tuple(self.read_noupdate(v) for v in variables)
+        return np.array(data) if numpify else data
+
+    def read_all(self, numpify=None):
+        return self.read(*self.variables, numpify=numpify)
+
+    def read_noupdate(self, variable):
+        return _memory_io.read_variable(self.process_handle, self.block_address + variable.final_offset, dtype=variable.dtype)
+
+    # Writing
+    def write(self, *pairs, process_handle=None):
+        self.update(process_handle=process_handle)
+        # print(self.block_address)
+        for variable, value in pairs:
+            self.write_noupdate(variable, value, process_handle=process_handle)
+
+    def write_all(self, *values, process_handle=None):
+        return self.write(*zip(self.variables, values), process_handle=process_handle)
+
+    def write_noupdate(self, variable, value, process_handle=None):
+        process_handle = process_handle if process_handle else self.process_handle
+        _memory_io.write_variable(process_handle, self.block_address + variable.final_offset, value, dtype=variable.dtype)
 
 
 class MemoryDataGroup():
-    def __init__(self, *pointers):
+    def __init__(self, *pointers, numpify=False):
         self.pointers = pointers
+        self.numpify = numpify
     
-    def fetch(self):
-        return tuple(pointer.fetch() for pointer in self.pointers)
+    def read_noupdate(self):
+        data = tuple(pointer.read_noupdate() for pointer in self.pointers)
+        return np.array(data) if self.numpify else data
 
-    def update_pointes(self):
-        return tuple(pointer.update_pointes() for pointer in self.pointers)
+    def update(self):
+        return tuple(pointer.update() for pointer in self.pointers)
 
-    def get_update(self):
-        return tuple(pointer.get_update() for pointer in self.pointers)
+    def read(self):
+        data = tuple(pointer.read() for pointer in self.pointers)
+        return np.array(data) if self.numpify else data
 
