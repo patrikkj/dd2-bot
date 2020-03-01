@@ -1,6 +1,8 @@
+import queue
 import sys
 import threading
-import queue
+from timeit import default_timer as timer
+
 import cv2.cv2 as cv2
 import keyboard
 
@@ -19,14 +21,18 @@ this.event_queues = {
 def threaded_autoflush():
     return_value = None
     while return_value != this.EXIT:
-        try:
-            return_value = this.event_queues['auto'][1].get()()
-        except Exception as e:
-            print(f"ERROR: {e}")
+        # try:
+        callable_ = this.event_queues['auto'][1].get()
+        start = timer()
+        return_value = callable_()
+        delta = timer() - start
+        # except Exception as e:
+        #     print(f"ERROR: {e}")
         print(f">>> {return_value}")
+        print(f"Exec. time: {delta:.3f}")
     this.status_code = this.EXIT
     sys.exit(0)
-threading.Thread(target=threaded_autoflush).start()
+threading.Thread(target=threaded_autoflush, daemon=True).start()
 
 # Dictionaries for tracking keyboard input
 this.pressed_keys = set()
@@ -54,15 +60,19 @@ def init():
 
     # Conversion from key scan code to corresponding key name
     this.code_to_key = {
-        (1, False): "esc",      (12, False): "plus",    (53, False): "minus",   (28, False): "enter", 
-        (29, False): "ctrl",    (56, False): "alt",     (42, False): "shift",
+        (1, False): "esc",      
+        (12, False): "plus",    (53, False): "minus",   (28, False): "enter",   (15, False): "tab",
+        (29, False): "ctrl",    (56, False): "alt",     (541, False): "altgr",  (42, False): "shift",   
         (72, False): "up",      (80, False): "down",    (75, False): "left",    (77, False): "right",
+        (73, False): "pgup",    (81, False): "pgdn",    (69, False): "pause",
         (59, False): "f1",      (60, False): "f2",      (61, False): "f3",      (62, False): "f4",
         (63, False): "f5",      (64, False): "f6",      (65, False): "f7",      (66, False): "f8",
         (67, False): "f9",      (68, False): "f10",     (87, False): "f11",     (88, False): "f12",
         (79, True): "numpad_1", (80, True): "numpad_2", (81, True): "numpad_3", (75, True): "numpad_4",
         (76, True): "numpad_5", (77, True): "numpad_6", (71, True): "numpad_7", (72, True): "numpad_8",
         (73, True): "numpad_9", (82, True): "numpad_0",
+        (53, True): "numpad_divide", (55, True): "numpad_multiply", (78, True): "numpad_plus", 
+        (74, True): "numpad_minus",  (28, True): "numpad_enter",    (83, True): "numpad_decimal", 
     }
 
     # Dictionary of all lower case ascii letters
@@ -75,9 +85,7 @@ def init():
 
     # Populate dictionary mapping from key to code
     this.key_to_code = {v : k for k, v in this.code_to_key.items()}
-
-    ###################
-
+###################
 
 
 def _on_key_event(event):
@@ -133,7 +141,7 @@ def set_hotkey_state(suppress=None, hotkeys=None, input_=None):
         return
     elif input_ is False:
         this.is_input_enabled = False
-        set_hotkey_state(suppress=True, hotkeys=True)
+        set_hotkey_state(suppress=False, hotkeys=True)
         return
 
     # Block any attempts to change hotkey state when input dialog is active
@@ -141,10 +149,10 @@ def set_hotkey_state(suppress=None, hotkeys=None, input_=None):
         return    
     
     if suppress is not None:
-        print(f"Setting suppression from {this.is_suppress_enabled} to {suppress}")
-        # Break if suppression is already set to given value
-        if this.is_suppress_enabled == suppress:
-            return
+        print(f"KeyEvent suppression: {this.is_suppress_enabled} -> {suppress}")
+        # # Break if suppression is already set to given value
+        # if this.is_suppress_enabled == suppress:
+        #     return
 
         # Rehook key event listener
         keyboard.unhook(_on_key_event)
@@ -152,7 +160,7 @@ def set_hotkey_state(suppress=None, hotkeys=None, input_=None):
         this.is_suppress_enabled = suppress
     
     if hotkeys is not None:
-        print(f"Setting hotkey from {this.is_hotkeys_enabled} to {hotkeys}")
+        print(f"Hotkeys active: {this.is_hotkeys_enabled} to {hotkeys}")
         this.is_hotkeys_enabled = hotkeys
 
 # Hotkeys
@@ -213,5 +221,6 @@ def wait_until_trigger(hotkey_to_output, is_callback):
         return this.trigger_output()
     else:
         return this.trigger_output
+
 
 init()

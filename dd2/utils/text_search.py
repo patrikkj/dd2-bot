@@ -2,10 +2,10 @@ import cv2.cv2 as cv2
 import keyboard
 import numpy as np
 import pytesseract
-from PIL import Image
 from matplotlib import pyplot as plt
-from dd2.io import file_io, keyboard_io, mouse_io, screen_io, win_io
-from dd2.io.helpers import _file_io, _keyboard_io, _mouse_io, _screen_io, _win_io
+from PIL import Image
+
+import dd2.io as io
 
 # from pytesseract import Output, image_to_string
 
@@ -108,8 +108,8 @@ def _extract_text(image, options=None):
 
 def extract_text_region(x, y, dx, dy, hwnd=None, options=None):
     if hwnd:
-        return _extract_text(screen_io.capture_region(x, y, dx, dy, hwnd=hwnd), options=options)
-    return _extract_text(screen_io.capture_region(x, y, dx, dy), options=options)
+        return _extract_text(io.screen.capture_region(x, y, dx, dy, hwnd=hwnd), options=options)
+    return _extract_text(io.screen.capture_region(x, y, dx, dy), options=options)
 
 def extract_text_file(relative_filepath, options=None):
     return _extract_text(Image.open(relative_filepath), options=options)
@@ -120,11 +120,11 @@ def extract_text_region_interactive(hwnd, options=None):
      # Capture boundng box
     print("Hover top left corner and press [HOME] ...")
     keyboard.wait("home") 
-    x1, y1 = mouse_io.get_mouse_pos(hwnd=hwnd)
+    x1, y1 = io.mouse.get_mouse_pos(hwnd=hwnd)
 
     print("Hover bottom right corner and press [HOME] ...")
     keyboard.wait("home") 
-    x2, y2 = mouse_io.get_mouse_pos(hwnd=hwnd)
+    x2, y2 = io.mouse.get_mouse_pos(hwnd=hwnd)
     dx, dy = x2 - x1, y2 - y1
 
     result = extract_text_region(x1, y1, dx, dy, hwnd=hwnd, options=options)
@@ -136,11 +136,11 @@ def extract_text_region_interactive_screen(options=None):
      # Capture boundng box
     print("Hover top left corner and press [HOME] ...")
     keyboard.wait("home") 
-    x1, y1 = mouse_io.get_mouse_pos()
+    x1, y1 = io.mouse.get_mouse_pos()
 
     print("Hover bottom right corner and press [HOME] ...")
     keyboard.wait("home") 
-    x2, y2 = mouse_io.get_mouse_pos()
+    x2, y2 = io.mouse.get_mouse_pos()
     dx, dy = x2 - x1, y2 - y1
 
     result = extract_text_region(x1, y1, dx, dy, options=options)

@@ -1,13 +1,9 @@
 from os import listdir, path
 
 import cv2.cv2 as cv2
-import keyboard
 import numpy as np
-import win32gui
-from PIL import ImageGrab
 
-from dd2.io import file_io, keyboard_io, mouse_io, screen_io, win_io
-from dd2.io.helpers import _file_io, _keyboard_io, _mouse_io, _screen_io, _win_io
+import dd2.io as io
 
 WINDOW_NAME = "Images"
 
@@ -21,22 +17,22 @@ def image_search_multi(image_dir, template_dir, threshold, image_filter=lambda _
     return _image_search(image_paths, template_paths, threshold, image_filter=image_filter)
 
 def region_search(x, y, width, height, template, threshold):
-    return image_search(win_io.capture_region(x, y, width, height), template, threshold)
+    return image_search(io.screen.capture_region(x, y, width, height), template, threshold)
 
 def screen_capture(width=1920, height=1080):
-    return win_io.capture_region(0, 0, width, height)
+    return io.screen.capture_region(0, 0, width, height)
 
 #def template_search(image, template_dir, method=cv2.TM_CCOEFF_NORMED):
 
 def masked_search(image, template_dir, mask_dir, method=cv2.TM_SQDIFF):
     # Prepare templates
-    template_names = file_io.names_from_directory(template_dir)
-    templates_bgr = file_io.images_from_directory(template_dir)
+    template_names = io.file.names_from_directory(template_dir)
+    templates_bgr = io.file.images_from_directory(template_dir)
     templates_gray = [cv2.cvtColor(template, cv2.COLOR_BGR2GRAY) for template in templates_bgr]
 
     # Prepare masks
-    mask_names = file_io.names_from_directory(mask_dir)
-    masks_bgr = file_io.images_from_directory(mask_dir)
+    mask_names = io.file.names_from_directory(mask_dir)
+    masks_bgr = io.file.images_from_directory(mask_dir)
     masks_gray = [cv2.cvtColor(mask, cv2.COLOR_BGR2GRAY) for mask in masks_bgr]
 
     # Matching rectangle data
@@ -136,12 +132,12 @@ def _image_search(image_paths, template_paths, threshold,  image_filter=lambda _
             # Find matching rectangle per template
             min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(res)
             if (method in [cv2.TM_SQDIFF, cv2.TM_SQDIFF_NORMED]):
-                if (min_val < img_min_val):
+                if min_val < img_min_val:
                     img_min_val = min_val
                     img_min_loc = min_loc
                     img_min_template = template_name
             else:
-                if (max_val < img_max_val):
+                if max_val < img_max_val:
                     img_max_val = max_val
                     img_max_loc = max_loc
                     img_max_template = template_name

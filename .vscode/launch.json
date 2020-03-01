@@ -1,0 +1,43 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: Current file",
+            "type": "python",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "program": "${file}",
+            "console": "integratedTerminal",
+        },
+        {
+            "name": "Module",
+            "type": "python",
+            "windows": {
+                "sudo": true
+            },
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            // "program": "C:\\Users\\Patrik\\git\\tdt4136\\assignment-3\\python2\\autograder.py",
+            "console": "externalTerminal",
+            // "windows": {
+            //     "pythonPath": "C:\\Users\\Patrik\\AppData\\Local\\Programs\\Python\\Python27\\python.exe"
+            // },
+            "args": ["-m", "dd2"]
+        },
+        // {
+        //     "name": "Python 3: Autograder Q3",
+        //     "type": "python",
+        //     "request": "launch",
+        //     "cwd": "${workspaceFolder}/assignment-3/python3",
+        //     "program": "C:\\Users\\Patrik\\git\\tdt4136\\assignment-3\\python3\\autograder.py",
+        //     "console": "integratedTerminal",
+        //     "windows": {
+        //         "pythonPath": "C:\\Users\\Patrik\\AppData\\Local\\Programs\\Python\\Python37-32\\python.exe"
+        //     },
+        //     "args": ["-q", "q3", "--no-graphics"]
+        // }
+    ]
+}

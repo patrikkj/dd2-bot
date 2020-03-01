@@ -1,21 +1,19 @@
-import keyboard
 import time
-import dd2.io.helpers._win_io as _win_io
 
-from dd2.io.helpers import _file_io, _keyboard_io, _mouse_io, _screen_io, _win_io
+import keyboard
 
-def input_(string):
-    _win_io.set_focus(_win_io.get_console())
-    _keyboard_io.set_hotkey_state(input_=True)
-    output = input(string)
-    _keyboard_io.set_hotkey_state(input_=False)
-    return output
+import dd2.core.services as services
+
+from .helpers import _keyboard_io, _win_io
+
 
 # Keyboard management
 def press(key):
+    # print(f"Press '{key}' ({time.time()%1000:.5f})")
     keyboard.press(key)
 
 def release(key):
+    # print(f"Release '{key}' ({time.time()%1000:.5f})")
     keyboard.release(key)
 
 def press_and_release(keys, duration=0):
@@ -32,6 +30,29 @@ def wait(key):
 
 def write(string):
     keyboard.write(string)
+
+def is_pressed(key):
+    return keyboard.is_pressed(key)
+
+def stash_state():
+    return keyboard.stash_state()
+
+
+# Movement injection
+def create_service(client):
+    return services.keyboard_service.create_service(client)
+
+def kill_service(client):
+    return services.keyboard_service.kill_service(client)
+
+def set_input_vector(client, input_vector):
+    return services.keyboard_service.set_input_vector(client, input_vector)
+
+def set_input_x(client, input_x):
+    return services.keyboard_service.set_input_x(client, input_x)
+
+def set_input_y(client, input_y):
+    return services.keyboard_service.set_input_y(client, input_y)
 
 
 # Hotkeys
@@ -75,15 +96,48 @@ def select_from_options(options_dict, title=None, default=None):
     for num, entry in enumerate(options_dict.items(), 1):
         option, return_value = entry
         print(f"  [{num}] - {option}")
-        hotkey_to_return_value[f"ctrl+{num}"] = return_value
+        hotkey_to_return_value[f"ctrl+numpad_{num}"] = return_value
     # Add default selection
     if default:
         hotkey_to_return_value["enter"] = list(options_dict.values())[default - 1]
     # Wait for user input
-    print("\nSelect using [Ctrl] + [0-9] ...")
+    print("\nSelect using [Ctrl] + Numpad[1-9] ...")
     #Adding triggers
     selected = wait_until_trigger(hotkey_to_return_value, is_callback=False)
     # Print selected option
-    print(f"Selected: {selected}\n")
+    # print(f"Selected: {selected}\n")
     # Return value
-    return selectedremove_hotkeys
+    return selected
+
+def select_from_options_input(options_dict, title=None):
+    if title:
+        print(f"\n - {title} - ")
+    # Print menu options
+    num_to_return_value = {}
+    for num, entry in enumerate(options_dict.items(), 1):
+        option, return_value = entry
+        print(f"  [{num}] - {option}")
+        num_to_return_value[num] = return_value
+        
+    # Wait for user input
+    while True:
+        try:    
+            user_input = input_("\nSelect option: ")
+            selected = num_to_return_value[int(user_input)]
+            break
+        except Exception as e:
+            print(e)
+    # Print selected option
+    # print(f"Selected: {selected}\n")
+    
+    # Return value
+    return selected
+
+def input_(string):
+    focused_hwnd = _win_io.get_focused_window()
+    _win_io.set_focus(_win_io.get_console())
+    _keyboard_io.set_hotkey_state(input_=True)
+    output = input(string)
+    _keyboard_io.set_hotkey_state(input_=False)
+    _win_io.set_focus(focused_hwnd)
+    return output

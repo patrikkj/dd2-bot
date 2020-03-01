@@ -1,6 +1,6 @@
 import threading
 
-instance=None
+instance = None
 
 class Session(dict):
 
@@ -17,6 +17,8 @@ class Session(dict):
     # --- --- --- 
     # 'state'             : One of the states listed in 'state.py'
     # 'wave'              : Tuple of the form (current, total) or None
+    # 'pause'             : True if script should pause upon next phase transition
+    # 'auto_build'        : True if script should build maps automatically
 
 
     #      CHARACTERS

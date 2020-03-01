@@ -33,3 +33,12 @@ TEAMMATE_NOACCEPT_3 = "teammate_noaccept_3"
 
 ENTIRE_DU_FIELD = "entire_du_field"
 GIMP_ONE_FIVE_WAVE = "gimp_one_five_wave"
+
+SLOT_1_F1 = "slot_1_f1"
+SLOT_1_F2 = "slot_1_f2"
+
+SLOT_2_F2 = "slot_2_f2"
+SLOT_2_F3 = "slot_2_f3"
+
+SLOT_3_F3 = "slot_3_f3"
+SLOT_3_F4 = "slot_3_f4"

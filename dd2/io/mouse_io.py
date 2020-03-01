@@ -1,17 +1,15 @@
 
 import mouse
 import win32api
-from mouse import (DOUBLE, DOWN, LEFT, MIDDLE, RIGHT, UP, X2, ButtonEvent,
-                   MoveEvent, WheelEvent, X)
+from mouse import DOUBLE, DOWN, LEFT, MIDDLE, RIGHT, UP, X2, X
 
-from dd2.io.helpers import (_file_io, _keyboard_io, _mouse_io, _screen_io,
-                            _win_io)
+import dd2.io as io
 
 
 # Mouse management
 def get_mouse_pos(hwnd=None):
     mouse_pos = win32api.GetCursorPos()
-    return _win_io.screen_to_client(hwnd, mouse_pos) if hwnd else mouse_pos
+    return io.win.screen_to_client(hwnd, mouse_pos) if hwnd else mouse_pos
 
 
 

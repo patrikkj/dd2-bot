@@ -1,5 +1,4 @@
-
-from dd2.io.helpers import _file_io, _keyboard_io, _mouse_io, _screen_io, _win_io
+from .helpers import _screen_io, _win_io
 
 
 def capture_screen():

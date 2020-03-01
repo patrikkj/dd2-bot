@@ -1,4 +1,5 @@
 {
-    "python.pythonPath": "C:\\Users\\Patrik\\AppData\\Local\\Programs\\Python\\Python38-32\\python.exe",
-    "python.formatting.provider": "yapf"
+    "python.pythonPath": "C:\\Users\\Patrik\\AppData\\Local\\Programs\\Python\\Python38\\python.exe"
+    // "python.formatting.provider": "yapf",
+    // "terminal.integrated.cwd": "${workspaceFolder}"
 }

@@ -27,6 +27,9 @@ def set_focus(hwnd, foreground=True):
     if foreground:
         win32gui.SetForegroundWindow(hwnd)
 
+def set_mouse_capture(hwnd):
+    win32gui.SetCapture(hwnd)
+
 def get_hwnds(filter_=lambda title: True):
     windows = []
     win32gui.EnumWindows(lambda hwnd, windows: windows.append((hwnd, win32gui.GetWindowText(hwnd))), windows)
@@ -44,6 +47,9 @@ def get_child_windows(parent_hwnd, filter_=lambda title: True):
 
 def set_console_title(title):
     ctypes.windll.kernel32.SetConsoleTitleW(title)
+
+def get_focused_window():
+    return win32gui.GetForegroundWindow()
 
 def get_window_title(hwnd):
     return win32gui.GetWindowText(hwnd)

@@ -1,4 +1,3 @@
-from dd2 import run
+from dd2.app import run
 
-if __name__ == '__main__':
-    run.main()
+run.main()
