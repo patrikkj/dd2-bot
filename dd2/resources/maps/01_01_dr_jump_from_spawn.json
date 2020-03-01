@@ -1,0 +1,13 @@
+[
+    {
+        "coords": {
+            "data": [
+                1962.2620849609375,
+                -3786.177978515625
+            ],
+            "__wrapper__": "numpy.ndarray"
+        },
+        "relative": false,
+        "__serializing_cls_name__": "JumpEvent"
+    }
+]

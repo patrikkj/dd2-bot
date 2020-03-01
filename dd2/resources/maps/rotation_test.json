@@ -1,0 +1,74 @@
+[
+    {
+        "coords": {
+            "data": [
+                -258.5489807128906,
+                -2321.197998046875
+            ],
+            "__wrapper__": "numpy.ndarray"
+        },
+        "rotation": {
+            "data": [
+                -0.07033178955316544,
+                -0.8618881702423096
+            ],
+            "__wrapper__": "numpy.ndarray"
+        },
+        "relative": false,
+        "__serializing_cls_name__": "MoveRotateEvent"
+    },
+    {
+        "coords": {
+            "data": [
+                -1583.7579345703125,
+                -2972.234130859375
+            ],
+            "__wrapper__": "numpy.ndarray"
+        },
+        "rotation": {
+            "data": [
+                -0.030881540849804878,
+                -0.11769652366638184
+            ],
+            "__wrapper__": "numpy.ndarray"
+        },
+        "relative": false,
+        "__serializing_cls_name__": "MoveRotateEvent"
+    },
+    {
+        "coords": {
+            "data": [
+                -2176.859130859375,
+                -3919.506103515625
+            ],
+            "__wrapper__": "numpy.ndarray"
+        },
+        "rotation": {
+            "data": [
+                0.02867034263908863,
+                0.6685824394226074
+            ],
+            "__wrapper__": "numpy.ndarray"
+        },
+        "relative": false,
+        "__serializing_cls_name__": "MoveRotateEvent"
+    },
+    {
+        "coords": {
+            "data": [
+                -1836.227294921875,
+                -5067.2705078125
+            ],
+            "__wrapper__": "numpy.ndarray"
+        },
+        "rotation": {
+            "data": [
+                -0.4526109993457794,
+                0.9828863143920898
+            ],
+            "__wrapper__": "numpy.ndarray"
+        },
+        "relative": false,
+        "__serializing_cls_name__": "MoveRotateEvent"
+    }
+]

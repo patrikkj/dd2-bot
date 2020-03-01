@@ -1,0 +1,80 @@
+[
+    {
+        "base_orientation": [
+            {
+                "data": [
+                    -1944.3057861328125,
+                    -2367.781005859375
+                ],
+                "__wrapper__": "numpy.ndarray"
+            },
+            {
+                "data": [
+                    -0.4251241683959961,
+                    0.9302631616592407
+                ],
+                "__wrapper__": "numpy.ndarray"
+            }
+        ],
+        "events": [
+            {
+                "start_orientation": [
+                    {
+                        "data": [
+                            8256.0849609375,
+                            5490.82373046875
+                        ],
+                        "__wrapper__": "numpy.ndarray"
+                    },
+                    {
+                        "data": [
+                            -0.38956549763679504,
+                            -0.3724362850189209
+                        ],
+                        "__wrapper__": "numpy.ndarray"
+                    }
+                ],
+                "end_orientation": [
+                    {
+                        "data": [
+                            8256.0849609375,
+                            5490.82373046875
+                        ],
+                        "__wrapper__": "numpy.ndarray"
+                    },
+                    {
+                        "data": [
+                            -0.38956549763679504,
+                            -0.3724362850189209
+                        ],
+                        "__wrapper__": "numpy.ndarray"
+                    }
+                ],
+                "defense": {
+                    "name": "EARTHSHATTER_TOWER",
+                    "__serializing_cls_name__": "Defense"
+                },
+                "relative": true,
+                "__serializing_cls_name__": "TowerPlacementEvent"
+            },
+            {
+                "coords": {
+                    "data": [
+                        7496.541015625,
+                        5403.87109375
+                    ],
+                    "__wrapper__": "numpy.ndarray"
+                },
+                "rotation": {
+                    "data": [
+                        -0.35671502351760864,
+                        -0.19063055515289307
+                    ],
+                    "__wrapper__": "numpy.ndarray"
+                },
+                "relative": true,
+                "__serializing_cls_name__": "MoveRotateEvent"
+            }
+        ]
+    }
+]

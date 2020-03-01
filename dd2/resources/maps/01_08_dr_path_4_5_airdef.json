@@ -1,0 +1,160 @@
+[
+    {
+        "hero_slot": {
+            "name": "HERO_3",
+            "__serializing_cls_name__": "Slot"
+        },
+        "__serializing_cls_name__": "HeroSwapEvent"
+    },
+    {
+        "orientation_2d": [
+            {
+                "data": [
+                    10625.607421875,
+                    4278.67626953125
+                ],
+                "__wrapper__": "numpy.ndarray"
+            },
+            {
+                "data": [
+                    -0.24998237192630768,
+                    -0.7624940872192383
+                ],
+                "__wrapper__": "numpy.ndarray"
+            }
+        ],
+        "defense": {
+            "name": "LIGHTNING_STRIKE_AURA",
+            "__serializing_cls_name__": "Defense"
+        },
+        "__serializing_cls_name__": "AuraPlacementEvent"
+    },
+    {
+        "orientation_2d": [
+            {
+                "data": [
+                    11449.21484375,
+                    3179.0107421875
+                ],
+                "__wrapper__": "numpy.ndarray"
+            },
+            {
+                "data": [
+                    -0.3037005662918091,
+                    0.22008466720581055
+                ],
+                "__wrapper__": "numpy.ndarray"
+            }
+        ],
+        "defense": {
+            "name": "LIGHTNING_STRIKE_AURA",
+            "__serializing_cls_name__": "Defense"
+        },
+        "__serializing_cls_name__": "AuraPlacementEvent"
+    },
+    {
+        "orientation_2d": [
+            {
+                "data": [
+                    11911.1904296875,
+                    1752.14208984375
+                ],
+                "__wrapper__": "numpy.ndarray"
+            },
+            {
+                "data": [
+                    -0.3514295518398285,
+                    -0.9692192077636719
+                ],
+                "__wrapper__": "numpy.ndarray"
+            }
+        ],
+        "defense": {
+            "name": "LIGHTNING_STRIKE_AURA",
+            "__serializing_cls_name__": "Defense"
+        },
+        "__serializing_cls_name__": "AuraPlacementEvent"
+    },
+    {
+        "orientation_2d": [
+            {
+                "data": [
+                    10432.8359375,
+                    827.1640014648438
+                ],
+                "__wrapper__": "numpy.ndarray"
+            },
+            {
+                "data": [
+                    -0.5580541491508484,
+                    -0.8650574684143066
+                ],
+                "__wrapper__": "numpy.ndarray"
+            }
+        ],
+        "defense": {
+            "name": "LIGHTNING_STRIKE_AURA",
+            "__serializing_cls_name__": "Defense"
+        },
+        "__serializing_cls_name__": "AuraPlacementEvent"
+    },
+    {
+        "coords": {
+            "data": [
+                12296.7841796875,
+                2416.333251953125
+            ],
+            "__wrapper__": "numpy.ndarray"
+        },
+        "rotation": {
+            "data": [
+                -0.29849132895469666,
+                -0.27368640899658203
+            ],
+            "__wrapper__": "numpy.ndarray"
+        },
+        "relative": false,
+        "__serializing_cls_name__": "MoveRotateEvent"
+    },
+    {
+        "coords": {
+            "data": [
+                [
+                    12296.7841796875,
+                    2416.333251953125
+                ],
+                [
+                    11162.861328125,
+                    3770.1181640625
+                ],
+                [
+                    9813.2421875,
+                    4686.9609375
+                ],
+                [
+                    8846.3564453125,
+                    5297.673828125
+                ],
+                [
+                    7981.935546875,
+                    5741.89404296875
+                ]
+            ],
+            "__wrapper__": "numpy.ndarray"
+        },
+        "weights": {
+            "data": [
+                1,
+                1,
+                1,
+                1,
+                1
+            ],
+            "__wrapper__": "numpy.ndarray"
+        },
+        "smooth_factor": 1,
+        "n_factor": 100,
+        "k": 3,
+        "__serializing_cls_name__": "PathTraverseEvent"
+    }
+]

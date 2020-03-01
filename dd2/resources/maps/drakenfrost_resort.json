@@ -1,0 +1,1084 @@
+[
+    {
+        "coords": [
+            2113.613525390625,
+            -2593.782470703125
+        ],
+        "rotation": [
+            -0.1439872533082962,
+            -0.5178167223930359
+        ],
+        "relative": false,
+        "__serializing_cls_name__": "MoveRotateEvent"
+    },
+    {
+        "hero_slot": {
+            "name": "HERO_2",
+            "__serializing_cls_name__": "Slot"
+        },
+        "__serializing_cls_name__": "HeroSwapEvent"
+    },
+    {
+        "coords": [
+            -1665.4444580078125,
+            -2609.941162109375
+        ],
+        "rotation": [
+            -0.21243032813072205,
+            -0.9999091625213623
+        ],
+        "relative": false,
+        "__serializing_cls_name__": "MoveRotateEvent"
+    },
+    {
+        "orientations_2d": [
+            [
+                [
+                    -1679.809814453125,
+                    -6118.47412109375
+                ],
+                [
+                    -0.5461568832397461,
+                    0.9810106754302979
+                ]
+            ],
+            [
+                [
+                    -1715.4769287109375,
+                    -4987.70654296875
+                ],
+                [
+                    -0.56578129529953,
+                    0.9759501218795776
+                ]
+            ],
+            [
+                [
+                    -1725.3863525390625,
+                    -3994.2880859375
+                ],
+                [
+                    -0.5677865743637085,
+                    0.9820656776428223
+                ]
+            ],
+            [
+                [
+                    -1671.0391845703125,
+                    -3155.96240234375
+                ],
+                [
+                    -0.5986036658287048,
+                    0.9928183555603027
+                ]
+            ]
+        ],
+        "defense": {
+            "name": "PROTON_BEAM",
+            "__serializing_cls_name__": "Defense"
+        },
+        "__serializing_cls_name__": "NodePlacementEvent"
+    },
+    {
+        "hero_slot": {
+            "name": "HERO_1",
+            "__serializing_cls_name__": "Slot"
+        },
+        "__serializing_cls_name__": "HeroSwapEvent"
+    },
+    {
+        "start_orientation": [
+            [
+                -1470.37890625,
+                -2630.8076171875
+            ],
+            [
+                -0.49078354239463806,
+                -0.9826840162277222
+            ]
+        ],
+        "end_orientation": [
+            [
+                -1470.37890625,
+                -2630.8076171875
+            ],
+            [
+                -0.251811683177948,
+                -0.9692606925964355
+            ]
+        ],
+        "defense": {
+            "name": "EARTHSHATTER_TOWER",
+            "__serializing_cls_name__": "Defense"
+        },
+        "__serializing_cls_name__": "TowerPlacementEvent"
+    },
+    {
+        "start_orientation": [
+            [
+                -1470.37890625,
+                -2630.8076171875
+            ],
+            [
+                -0.4028812646865845,
+                -0.7732838988304138
+            ]
+        ],
+        "end_orientation": [
+            [
+                -1470.37890625,
+                -2630.8076171875
+            ],
+            [
+                -0.11582569777965546,
+                -0.960199773311615
+            ]
+        ],
+        "defense": {
+            "name": "EARTHSHATTER_TOWER",
+            "__serializing_cls_name__": "Defense"
+        },
+        "__serializing_cls_name__": "TowerPlacementEvent"
+    },
+    {
+        "hero_slot": {
+            "name": "HERO_2",
+            "__serializing_cls_name__": "Slot"
+        },
+        "__serializing_cls_name__": "HeroSwapEvent"
+    },
+    {
+        "coords": [
+            1658.8759765625,
+            -2578.390380859375
+        ],
+        "rotation": [
+            -0.33183419704437256,
+            0.5045042289420962
+        ],
+        "relative": false,
+        "__serializing_cls_name__": "MoveRotateEvent"
+    },
+    {
+        "coords": [
+            3432.317138671875,
+            -3670.53564453125
+        ],
+        "rotation": [
+            -0.32248732447624207,
+            0.5529717020690441
+        ],
+        "relative": false,
+        "__serializing_cls_name__": "MoveRotateEvent"
+    },
+    {
+        "coords": [
+            5451.61669921875,
+            -2572.214599609375
+        ],
+        "rotation": [
+            -0.33935365080833435,
+            0.23028936982154846
+        ],
+        "relative": false,
+        "__serializing_cls_name__": "MoveRotateEvent"
+    },
+    {
+        "coords": [
+            5618.708984375,
+            -1142.6474609375
+        ],
+        "rotation": [
+            -0.31589242815971375,
+            0.24153971672058105
+        ],
+        "relative": false,
+        "__serializing_cls_name__": "MoveRotateEvent"
+    },
+    {
+        "coords": [
+            10086.0634765625,
+            2834.659423828125
+        ],
+        "rotation": [
+            -0.23701111972332,
+            0.2591177821159363
+        ],
+        "relative": false,
+        "__serializing_cls_name__": "MoveRotateEvent"
+    },
+    {
+        "orientations_2d": [
+            [
+                [
+                    12810.15625,
+                    5618.1953125
+                ],
+                [
+                    -0.3203067481517792,
+                    0.26131023466587067
+                ]
+            ],
+            [
+                [
+                    11939.5703125,
+                    4806.97705078125
+                ],
+                [
+                    -0.3203067481517792,
+                    0.26131023466587067
+                ]
+            ],
+            [
+                [
+                    11212.3623046875,
+                    4129.357421875
+                ],
+                [
+                    -0.34745895862579346,
+                    0.25580351054668427
+                ]
+            ],
+            [
+                [
+                    10574.375,
+                    3508.510986328125
+                ],
+                [
+                    -0.36527448892593384,
+                    0.25102613866329193
+                ]
+            ]
+        ],
+        "defense": {
+            "name": "PROTON_BEAM",
+            "__serializing_cls_name__": "Defense"
+        },
+        "__serializing_cls_name__": "NodePlacementEvent"
+    },
+    {
+        "hero_slot": {
+            "name": "HERO_1",
+            "__serializing_cls_name__": "Slot"
+        },
+        "__serializing_cls_name__": "HeroSwapEvent"
+    },
+    {
+        "start_orientation": [
+            [
+                10285.0,
+                3232.0
+            ],
+            [
+                -0.5078075528144836,
+                0.1592872440814972
+            ]
+        ],
+        "end_orientation": [
+            [
+                10285.0,
+                3232.0
+            ],
+            [
+                -0.224113330245018,
+                0.22762659192085266
+            ]
+        ],
+        "defense": {
+            "name": "EARTHSHATTER_TOWER",
+            "__serializing_cls_name__": "Defense"
+        },
+        "__serializing_cls_name__": "TowerPlacementEvent"
+    },
+    {
+        "start_orientation": [
+            [
+                10285.0,
+                3232.0
+            ],
+            [
+                -0.47840559482574463,
+                0.37384216487407684
+            ]
+        ],
+        "end_orientation": [
+            [
+                10285.0,
+                3232.0
+            ],
+            [
+                -0.09868272393941879,
+                0.2598881125450134
+            ]
+        ],
+        "defense": {
+            "name": "EARTHSHATTER_TOWER",
+            "__serializing_cls_name__": "Defense"
+        },
+        "__serializing_cls_name__": "TowerPlacementEvent"
+    },
+    {
+        "hero_slot": {
+            "name": "HERO_2",
+            "__serializing_cls_name__": "Slot"
+        },
+        "__serializing_cls_name__": "HeroSwapEvent"
+    },
+    {
+        "coords": [
+            7449.1953125,
+            55.56529998779297
+        ],
+        "rotation": [
+            -0.2578147053718567,
+            0.5550958216190338
+        ],
+        "relative": false,
+        "__serializing_cls_name__": "MoveRotateEvent"
+    },
+    {
+        "coords": [
+            9784.462890625,
+            -583.8148193359375
+        ],
+        "rotation": [
+            -0.2746020257472992,
+            0.6643704771995544
+        ],
+        "relative": false,
+        "__serializing_cls_name__": "MoveRotateEvent"
+    },
+    {
+        "coords": [
+            11389.9580078125,
+            -3292.16845703125
+        ],
+        "rotation": [
+            -0.26504385471343994,
+            0.7928589582443237
+        ],
+        "relative": false,
+        "__serializing_cls_name__": "MoveRotateEvent"
+    },
+    {
+        "coords": [
+            12941.857421875,
+            -3681.58203125
+        ],
+        "rotation": [
+            -0.2438947558403015,
+            0.4194694310426712
+        ],
+        "relative": false,
+        "__serializing_cls_name__": "MoveRotateEvent"
+    },
+    {
+        "coords": [
+            14431.943359375,
+            -2343.821044921875
+        ],
+        "rotation": [
+            -0.30923548340797424,
+            0.0316527783870697
+        ],
+        "relative": false,
+        "__serializing_cls_name__": "MoveRotateEvent"
+    },
+    {
+        "orientations_2d": [
+            [
+                [
+                    14241.5380859375,
+                    403.81378173828125
+                ],
+                [
+                    -0.39855384826660156,
+                    0.030908793210983276
+                ]
+            ],
+            [
+                [
+                    14214.5029296875,
+                    -678.941650390625
+                ],
+                [
+                    -0.4455592632293701,
+                    0.006149381399154663
+                ]
+            ],
+            [
+                [
+                    14190.2529296875,
+                    -1944.5574951171875
+                ],
+                [
+                    -0.4455592632293701,
+                    0.006149381399154663
+                ]
+            ],
+            [
+                [
+                    14175.138671875,
+                    -2733.418701171875
+                ],
+                [
+                    -0.4455592632293701,
+                    0.006149381399154663
+                ]
+            ]
+        ],
+        "defense": {
+            "name": "PROTON_BEAM",
+            "__serializing_cls_name__": "Defense"
+        },
+        "__serializing_cls_name__": "NodePlacementEvent"
+    },
+    {
+        "hero_slot": {
+            "name": "HERO_1",
+            "__serializing_cls_name__": "Slot"
+        },
+        "__serializing_cls_name__": "HeroSwapEvent"
+    },
+    {
+        "start_orientation": [
+            [
+                14023.1767578125,
+                -2286.42138671875
+            ],
+            [
+                -0.3765547275543213,
+                -0.9544233083724976
+            ]
+        ],
+        "end_orientation": [
+            [
+                14023.1767578125,
+                -2286.42138671875
+            ],
+            [
+                -0.31385940313339233,
+                0.035455942153930664
+            ]
+        ],
+        "defense": {
+            "name": "EARTHSHATTER_TOWER",
+            "__serializing_cls_name__": "Defense"
+        },
+        "__serializing_cls_name__": "TowerPlacementEvent"
+    },
+    {
+        "start_orientation": [
+            [
+                14023.1767578125,
+                -2286.42138671875
+            ],
+            [
+                -0.378932923078537,
+                0.9412363767623901
+            ]
+        ],
+        "end_orientation": [
+            [
+                14023.1767578125,
+                -2286.42138671875
+            ],
+            [
+                -0.2601946294307709,
+                0.04099130630493164
+            ]
+        ],
+        "defense": {
+            "name": "EARTHSHATTER_TOWER",
+            "__serializing_cls_name__": "Defense"
+        },
+        "__serializing_cls_name__": "TowerPlacementEvent"
+    },
+    {
+        "hero_slot": {
+            "name": "HERO_2",
+            "__serializing_cls_name__": "Slot"
+        },
+        "__serializing_cls_name__": "HeroSwapEvent"
+    },
+    {
+        "coords": [
+            14085.1640625,
+            595.2433471679688
+        ],
+        "rotation": [
+            -0.2959555387496948,
+            0.007752448320388794
+        ],
+        "relative": false,
+        "__serializing_cls_name__": "MoveRotateEvent"
+    },
+    {
+        "orientations_2d": [
+            [
+                [
+                    13764.7900390625,
+                    1866.05810546875
+                ],
+                [
+                    -0.4196150600910187,
+                    0.5449767298996449
+                ]
+            ],
+            [
+                [
+                    12659.1328125,
+                    2170.138916015625
+                ],
+                [
+                    -0.4051326811313629,
+                    0.5802010968327522
+                ]
+            ],
+            [
+                [
+                    11933.9755859375,
+                    2546.636474609375
+                ],
+                [
+                    -0.3538200855255127,
+                    0.6286057978868484
+                ]
+            ],
+            [
+                [
+                    11020.3740234375,
+                    3261.224365234375
+                ],
+                [
+                    -0.4175911843776703,
+                    0.6625632792711258
+                ]
+            ]
+        ],
+        "defense": {
+            "name": "PROTON_BEAM",
+            "__serializing_cls_name__": "Defense"
+        },
+        "__serializing_cls_name__": "NodePlacementEvent"
+    },
+    {
+        "hero_slot": {
+            "name": "HERO_1",
+            "__serializing_cls_name__": "Slot"
+        },
+        "__serializing_cls_name__": "HeroSwapEvent"
+    },
+    {
+        "start_orientation": [
+            [
+                10967.96875,
+                3452.005126953125
+            ],
+            [
+                -0.42037656903266907,
+                -0.8039639592170715
+            ]
+        ],
+        "end_orientation": [
+            [
+                10967.96875,
+                3452.005126953125
+            ],
+            [
+                -0.11359041184186935,
+                0.7103990167379379
+            ]
+        ],
+        "defense": {
+            "name": "EARTHSHATTER_TOWER",
+            "__serializing_cls_name__": "Defense"
+        },
+        "__serializing_cls_name__": "TowerPlacementEvent"
+    },
+    {
+        "start_orientation": [
+            [
+                10967.96875,
+                3452.005126953125
+            ],
+            [
+                -0.3372313976287842,
+                -0.6127644181251526
+            ]
+        ],
+        "end_orientation": [
+            [
+                10967.96875,
+                3452.005126953125
+            ],
+            [
+                -0.24663467705249786,
+                0.7412420958280563
+            ]
+        ],
+        "defense": {
+            "name": "EARTHSHATTER_TOWER",
+            "__serializing_cls_name__": "Defense"
+        },
+        "__serializing_cls_name__": "TowerPlacementEvent"
+    },
+    {
+        "hero_slot": {
+            "name": "HERO_3",
+            "__serializing_cls_name__": "Slot"
+        },
+        "__serializing_cls_name__": "HeroSwapEvent"
+    },
+    {
+        "orientation_2d": [
+            [
+                10498.9267578125,
+                3716.99365234375
+            ],
+            [
+                -0.35851892828941345,
+                -0.5999879837036133
+            ]
+        ],
+        "defense": {
+            "name": "LIGHTNING_STRIKE_AURA",
+            "__serializing_cls_name__": "Defense"
+        },
+        "__serializing_cls_name__": "AuraPlacementEvent"
+    },
+    {
+        "orientation_2d": [
+            [
+                11308.2880859375,
+                3788.546875
+            ],
+            [
+                -0.3407592177391052,
+                0.4785928726196289
+            ]
+        ],
+        "defense": {
+            "name": "LIGHTNING_STRIKE_AURA",
+            "__serializing_cls_name__": "Defense"
+        },
+        "__serializing_cls_name__": "AuraPlacementEvent"
+    },
+    {
+        "orientation_2d": [
+            [
+                10948.5859375,
+                2740.329833984375
+            ],
+            [
+                -0.08059926331043243,
+                -0.8300572633743286
+            ]
+        ],
+        "defense": {
+            "name": "LIGHTNING_STRIKE_AURA",
+            "__serializing_cls_name__": "Defense"
+        },
+        "__serializing_cls_name__": "AuraPlacementEvent"
+    },
+    {
+        "orientation_2d": [
+            [
+                12138.7607421875,
+                1757.44677734375
+            ],
+            [
+                -0.2388572096824646,
+                -0.8875181674957275
+            ]
+        ],
+        "defense": {
+            "name": "LIGHTNING_STRIKE_AURA",
+            "__serializing_cls_name__": "Defense"
+        },
+        "__serializing_cls_name__": "AuraPlacementEvent"
+    },
+    {
+        "hero_slot": {
+            "name": "HERO_1",
+            "__serializing_cls_name__": "Slot"
+        },
+        "__serializing_cls_name__": "HeroSwapEvent"
+    },
+    {
+        "coords": [
+            10669.455078125,
+            4093.303955078125
+        ],
+        "rotation": [
+            -0.32032865285873413,
+            -0.2583999037742615
+        ],
+        "relative": false,
+        "__serializing_cls_name__": "MoveRotateEvent"
+    },
+    {
+        "start_orientation": [
+            [
+                8649.5302734375,
+                5348.68505859375
+            ],
+            [
+                -0.4616929292678833,
+                -0.35643720626831055
+            ]
+        ],
+        "end_orientation": [
+            [
+                8649.5302734375,
+                5348.68505859375
+            ],
+            [
+                -0.20293918251991272,
+                -0.3502163290977478
+            ]
+        ],
+        "defense": {
+            "name": "EARTHSHATTER_TOWER",
+            "__serializing_cls_name__": "Defense"
+        },
+        "__serializing_cls_name__": "TowerPlacementEvent"
+    },
+    {
+        "start_orientation": [
+            [
+                8754.7607421875,
+                5355.0986328125
+            ],
+            [
+                -0.5890445709228516,
+                -0.25610095262527466
+            ]
+        ],
+        "end_orientation": [
+            [
+                8754.7607421875,
+                5355.0986328125
+            ],
+            [
+                -0.15178850293159485,
+                -0.34576284885406494
+            ]
+        ],
+        "defense": {
+            "name": "EARTHSHATTER_TOWER",
+            "__serializing_cls_name__": "Defense"
+        },
+        "__serializing_cls_name__": "TowerPlacementEvent"
+    },
+    {
+        "hero_slot": {
+            "name": "HERO_2",
+            "__serializing_cls_name__": "Slot"
+        },
+        "__serializing_cls_name__": "HeroSwapEvent"
+    },
+    {
+        "coords": [
+            7983.41650390625,
+            5230.53564453125
+        ],
+        "rotation": [
+            -0.4326176345348358,
+            -0.40505701303482056
+        ],
+        "relative": false,
+        "__serializing_cls_name__": "MoveRotateEvent"
+    },
+    {
+        "coords": [
+            6523.5380859375,
+            6959.10302734375
+        ],
+        "rotation": [
+            -0.39565491676330566,
+            -0.23690521717071533
+        ],
+        "relative": false,
+        "__serializing_cls_name__": "MoveRotateEvent"
+    },
+    {
+        "coords": [
+            4550.8359375,
+            7122.24169921875
+        ],
+        "rotation": [
+            -0.4022875130176544,
+            -0.19570982456207275
+        ],
+        "relative": false,
+        "__serializing_cls_name__": "MoveRotateEvent"
+    },
+    {
+        "orientations_2d": [
+            [
+                [
+                    3941.435302734375,
+                    7922.51171875
+                ],
+                [
+                    -0.42308488488197327,
+                    -0.10658460855484009
+                ]
+            ],
+            [
+                [
+                    4845.5947265625,
+                    7149.6171875
+                ],
+                [
+                    -0.5241860151290894,
+                    -0.321561336517334
+                ]
+            ],
+            [
+                [
+                    5983.9453125,
+                    7003.3271484375
+                ],
+                [
+                    -0.47586870193481445,
+                    -0.3988794684410095
+                ]
+            ],
+            [
+                [
+                    6748.78369140625,
+                    6668.55517578125
+                ],
+                [
+                    -0.5636831521987915,
+                    -0.36409980058670044
+                ]
+            ]
+        ],
+        "defense": {
+            "name": "PROTON_BEAM",
+            "__serializing_cls_name__": "Defense"
+        },
+        "__serializing_cls_name__": "NodePlacementEvent"
+    },
+    {
+        "coords": [
+            7876.765625,
+            5165.9130859375
+        ],
+        "rotation": [
+            -0.26334628462791443,
+            -0.7753138542175293
+        ],
+        "relative": false,
+        "__serializing_cls_name__": "MoveRotateEvent"
+    },
+    {
+        "coords": [
+            6541.00341796875,
+            2747.17333984375
+        ],
+        "rotation": [
+            -0.3058985471725464,
+            -0.5233627557754517
+        ],
+        "relative": false,
+        "__serializing_cls_name__": "MoveRotateEvent"
+    },
+    {
+        "coords": [
+            3248.576416015625,
+            2808.266845703125
+        ],
+        "rotation": [
+            -0.34366658329963684,
+            -0.3651324510574341
+        ],
+        "relative": false,
+        "__serializing_cls_name__": "MoveRotateEvent"
+    },
+    {
+        "coords": [
+            1620.5869140625,
+            4361.48388671875
+        ],
+        "rotation": [
+            -0.38873091340065,
+            -0.4420788884162903
+        ],
+        "relative": false,
+        "__serializing_cls_name__": "MoveRotateEvent"
+    },
+    {
+        "coords": [
+            -974.154052734375,
+            3051.271240234375
+        ],
+        "rotation": [
+            -0.34245747327804565,
+            -0.6357629299163818
+        ],
+        "relative": false,
+        "__serializing_cls_name__": "MoveRotateEvent"
+    },
+    {
+        "coords": [
+            -2790.5107421875,
+            3365.573486328125
+        ],
+        "rotation": [
+            -0.40555140376091003,
+            -0.20546042919158936
+        ],
+        "relative": false,
+        "__serializing_cls_name__": "MoveRotateEvent"
+    },
+    {
+        "coords": [
+            -3272.70263671875,
+            5118.205078125
+        ],
+        "rotation": [
+            -0.38780051469802856,
+            0.05563247203826904
+        ],
+        "relative": false,
+        "__serializing_cls_name__": "MoveRotateEvent"
+    },
+    {
+        "coords": [
+            -2319.399658203125,
+            6213.00390625
+        ],
+        "rotation": [
+            -0.3017754852771759,
+            0.3494236022233963
+        ],
+        "relative": false,
+        "__serializing_cls_name__": "MoveRotateEvent"
+    },
+    {
+        "coords": [
+            140.05076599121094,
+            7121.7509765625
+        ],
+        "rotation": [
+            -0.2948407530784607,
+            0.36389851570129395
+        ],
+        "relative": false,
+        "__serializing_cls_name__": "MoveRotateEvent"
+    },
+    {
+        "orientations_2d": [
+            [
+                [
+                    556.553466796875,
+                    7880.82177734375
+                ],
+                [
+                    -0.4566161632537842,
+                    0.04618203639984131
+                ]
+            ],
+            [
+                [
+                    -37.731266021728516,
+                    6954.4892578125
+                ],
+                [
+                    -0.48979729413986206,
+                    0.16068094968795776
+                ]
+            ],
+            [
+                [
+                    -937.0658569335938,
+                    6459.724609375
+                ],
+                [
+                    -0.5268159508705139,
+                    0.2634393870830536
+                ]
+            ],
+            [
+                [
+                    -1837.283935546875,
+                    6104.7646484375
+                ],
+                [
+                    -0.5468266606330872,
+                    0.2917492985725403
+                ]
+            ]
+        ],
+        "defense": {
+            "name": "PROTON_BEAM",
+            "__serializing_cls_name__": "Defense"
+        },
+        "__serializing_cls_name__": "NodePlacementEvent"
+    },
+    {
+        "hero_slot": {
+            "name": "HERO_1",
+            "__serializing_cls_name__": "Slot"
+        },
+        "__serializing_cls_name__": "HeroSwapEvent"
+    },
+    {
+        "start_orientation": [
+            [
+                -2867.20703125,
+                5442.64111328125
+            ],
+            [
+                -0.42718514800071716,
+                0.4467833377420902
+            ]
+        ],
+        "end_orientation": [
+            [
+                -2867.20703125,
+                5442.64111328125
+            ],
+            [
+                -0.0990704894065857,
+                0.3172674626111984
+            ]
+        ],
+        "defense": {
+            "name": "EARTHSHATTER_TOWER",
+            "__serializing_cls_name__": "Defense"
+        },
+        "__serializing_cls_name__": "TowerPlacementEvent"
+    },
+    {
+        "start_orientation": [
+            [
+                -2867.20703125,
+                5442.64111328125
+            ],
+            [
+                -0.5813878178596497,
+                0.72258660197258
+            ]
+        ],
+        "end_orientation": [
+            [
+                -2867.20703125,
+                5442.64111328125
+            ],
+            [
+                -0.10391507297754288,
+                0.32258085906505585
+            ]
+        ],
+        "defense": {
+            "name": "EARTHSHATTER_TOWER",
+            "__serializing_cls_name__": "Defense"
+        },
+        "__serializing_cls_name__": "TowerPlacementEvent"
+    }
+]

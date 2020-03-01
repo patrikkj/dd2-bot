@@ -1,0 +1,75 @@
+[
+    {
+        "orientations_2d": [
+            [
+                {
+                    "data": [
+                        13475.2646484375,
+                        1913.29345703125
+                    ],
+                    "__wrapper__": "numpy.ndarray"
+                },
+                {
+                    "data": [
+                        -0.38979750871658325,
+                        0.5600201264023781
+                    ],
+                    "__wrapper__": "numpy.ndarray"
+                }
+            ],
+            [
+                {
+                    "data": [
+                        12732.8291015625,
+                        2154.320556640625
+                    ],
+                    "__wrapper__": "numpy.ndarray"
+                },
+                {
+                    "data": [
+                        -0.4109553098678589,
+                        0.5903317332267761
+                    ],
+                    "__wrapper__": "numpy.ndarray"
+                }
+            ],
+            [
+                {
+                    "data": [
+                        12016.1865234375,
+                        2630.373291015625
+                    ],
+                    "__wrapper__": "numpy.ndarray"
+                },
+                {
+                    "data": [
+                        -0.5125955939292908,
+                        0.6639210879802704
+                    ],
+                    "__wrapper__": "numpy.ndarray"
+                }
+            ],
+            [
+                {
+                    "data": [
+                        11228.578125,
+                        3353.715576171875
+                    ],
+                    "__wrapper__": "numpy.ndarray"
+                },
+                {
+                    "data": [
+                        -0.5566238760948181,
+                        0.6886769682168961
+                    ],
+                    "__wrapper__": "numpy.ndarray"
+                }
+            ]
+        ],
+        "defense": {
+            "name": "PROTON_BEAM",
+            "__serializing_cls_name__": "Defense"
+        },
+        "__serializing_cls_name__": "NodePlacementEvent"
+    }
+]

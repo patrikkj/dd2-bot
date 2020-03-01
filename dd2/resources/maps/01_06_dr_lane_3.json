@@ -1,0 +1,160 @@
+[
+    {
+        "start_orientation": [
+            {
+                "data": [
+                    14332.18359375,
+                    -1996.98291015625
+                ],
+                "__wrapper__": "numpy.ndarray"
+            },
+            {
+                "data": [
+                    -0.3122950494289398,
+                    -0.8366014957427979
+                ],
+                "__wrapper__": "numpy.ndarray"
+            }
+        ],
+        "end_orientation": [
+            {
+                "data": [
+                    14332.18359375,
+                    -1996.98291015625
+                ],
+                "__wrapper__": "numpy.ndarray"
+            },
+            {
+                "data": [
+                    -0.1376323252916336,
+                    0.007942676544189453
+                ],
+                "__wrapper__": "numpy.ndarray"
+            }
+        ],
+        "defense": {
+            "name": "EARTHSHATTER_TOWER",
+            "__serializing_cls_name__": "Defense"
+        },
+        "__serializing_cls_name__": "TowerPlacementEvent"
+    },
+    {
+        "start_orientation": [
+            {
+                "data": [
+                    14332.18359375,
+                    -1996.98291015625
+                ],
+                "__wrapper__": "numpy.ndarray"
+            },
+            {
+                "data": [
+                    -0.2451944649219513,
+                    -0.9101850986480713
+                ],
+                "__wrapper__": "numpy.ndarray"
+            }
+        ],
+        "end_orientation": [
+            {
+                "data": [
+                    14332.18359375,
+                    -1996.98291015625
+                ],
+                "__wrapper__": "numpy.ndarray"
+            },
+            {
+                "data": [
+                    -0.3749423325061798,
+                    -0.06458806991577148
+                ],
+                "__wrapper__": "numpy.ndarray"
+            }
+        ],
+        "defense": {
+            "name": "EARTHSHATTER_TOWER",
+            "__serializing_cls_name__": "Defense"
+        },
+        "__serializing_cls_name__": "TowerPlacementEvent"
+    },
+    {
+        "hero_slot": {
+            "name": "HERO_2",
+            "__serializing_cls_name__": "Slot"
+        },
+        "__serializing_cls_name__": "HeroSwapEvent"
+    },
+    {
+        "orientations_2d": [
+            [
+                {
+                    "data": [
+                        14374.779296875,
+                        -1515.17333984375
+                    ],
+                    "__wrapper__": "numpy.ndarray"
+                },
+                {
+                    "data": [
+                        -0.42436495423316956,
+                        0.9741353988647461
+                    ],
+                    "__wrapper__": "numpy.ndarray"
+                }
+            ],
+            [
+                {
+                    "data": [
+                        14284.90625,
+                        -369.2453308105469
+                    ],
+                    "__wrapper__": "numpy.ndarray"
+                },
+                {
+                    "data": [
+                        -0.4256368577480316,
+                        0.9650058746337891
+                    ],
+                    "__wrapper__": "numpy.ndarray"
+                }
+            ],
+            [
+                {
+                    "data": [
+                        14245.4296875,
+                        645.7330932617188
+                    ],
+                    "__wrapper__": "numpy.ndarray"
+                },
+                {
+                    "data": [
+                        -0.43199512362480164,
+                        0.9736617803573608
+                    ],
+                    "__wrapper__": "numpy.ndarray"
+                }
+            ],
+            [
+                {
+                    "data": [
+                        14448.3583984375,
+                        1543.8612060546875
+                    ],
+                    "__wrapper__": "numpy.ndarray"
+                },
+                {
+                    "data": [
+                        -0.4705933630466461,
+                        0.9833790063858032
+                    ],
+                    "__wrapper__": "numpy.ndarray"
+                }
+            ]
+        ],
+        "defense": {
+            "name": "PROTON_BEAM",
+            "__serializing_cls_name__": "Defense"
+        },
+        "__serializing_cls_name__": "NodePlacementEvent"
+    }
+]

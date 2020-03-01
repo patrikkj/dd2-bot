@@ -1,0 +1,171 @@
+[
+    {
+        "orientation_2d": [
+            {
+                "data": [
+                    10774.8525390625,
+                    4368.12060546875
+                ],
+                "__wrapper__": "numpy.ndarray"
+            },
+            {
+                "data": [
+                    -0.21849516034126282,
+                    -0.7583906650543213
+                ],
+                "__wrapper__": "numpy.ndarray"
+            }
+        ],
+        "defense": {
+            "name": "LIGHTNING_STRIKE_AURA",
+            "__serializing_cls_name__": "Defense"
+        },
+        "__serializing_cls_name__": "AuraPlacementEvent"
+    },
+    {
+        "orientation_2d": [
+            {
+                "data": [
+                    11350.94140625,
+                    3131.640380859375
+                ],
+                "__wrapper__": "numpy.ndarray"
+            },
+            {
+                "data": [
+                    -0.2694651186466217,
+                    0.25862860679626465
+                ],
+                "__wrapper__": "numpy.ndarray"
+            }
+        ],
+        "defense": {
+            "name": "LIGHTNING_STRIKE_AURA",
+            "__serializing_cls_name__": "Defense"
+        },
+        "__serializing_cls_name__": "AuraPlacementEvent"
+    },
+    {
+        "coords": {
+            "data": [
+                11834.744140625,
+                1737.1082763671875
+            ],
+            "__wrapper__": "numpy.ndarray"
+        },
+        "rotation": {
+            "data": [
+                -0.3899846076965332,
+                -0.6798267364501953
+            ],
+            "__wrapper__": "numpy.ndarray"
+        },
+        "relative": false,
+        "__serializing_cls_name__": "MoveRotateEvent"
+    },
+    {
+        "orientation_2d": [
+            {
+                "data": [
+                    10495.5869140625,
+                    1588.1473388671875
+                ],
+                "__wrapper__": "numpy.ndarray"
+            },
+            {
+                "data": [
+                    -0.48799341917037964,
+                    -0.3288119435310364
+                ],
+                "__wrapper__": "numpy.ndarray"
+            }
+        ],
+        "defense": {
+            "name": "LIGHTNING_STRIKE_AURA",
+            "__serializing_cls_name__": "Defense"
+        },
+        "__serializing_cls_name__": "AuraPlacementEvent"
+    },
+    {
+        "orientation_2d": [
+            {
+                "data": [
+                    11327.267578125,
+                    1062.676513671875
+                ],
+                "__wrapper__": "numpy.ndarray"
+            },
+            {
+                "data": [
+                    -0.5135732293128967,
+                    0.5534440279006958
+                ],
+                "__wrapper__": "numpy.ndarray"
+            }
+        ],
+        "defense": {
+            "name": "LIGHTNING_STRIKE_AURA",
+            "__serializing_cls_name__": "Defense"
+        },
+        "__serializing_cls_name__": "AuraPlacementEvent"
+    },
+    {
+        "coords": {
+            "data": [
+                12268.34765625,
+                2138.24462890625
+            ],
+            "__wrapper__": "numpy.ndarray"
+        },
+        "rotation": {
+            "data": [
+                -0.28965672850608826,
+                -0.24251294136047363
+            ],
+            "__wrapper__": "numpy.ndarray"
+        },
+        "relative": false,
+        "__serializing_cls_name__": "MoveRotateEvent"
+    },
+    {
+        "coords": {
+            "data": [
+                [
+                    12268.34765625,
+                    2138.24462890625
+                ],
+                [
+                    11340.5673828125,
+                    3626.470947265625
+                ],
+                [
+                    9991.568359375,
+                    4782.1923828125
+                ],
+                [
+                    8773.48828125,
+                    5259.47900390625
+                ],
+                [
+                    8053.81103515625,
+                    5593.09521484375
+                ]
+            ],
+            "__wrapper__": "numpy.ndarray"
+        },
+        "weights": {
+            "data": [
+                1,
+                1,
+                1,
+                1,
+                1
+            ],
+            "__wrapper__": "numpy.ndarray"
+        },
+        "smooth_factor": 1,
+        "n_factor": 100,
+        "k": 3,
+        "__serializing_cls_name__": "PathTraverseEvent"
+    }
+]
