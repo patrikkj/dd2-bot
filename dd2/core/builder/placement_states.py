@@ -155,14 +155,12 @@ class _SetupPlacement(state_machine.State):
 
 # Placement
 class _StartPlacement(state_machine.State):
-    def execute(self, context):
-        # Place first defense
-
-
-
-        # Assert that defense is placed
-        if failed:
-            return StartPlacementFailed
+    def execute(self, context):        
+        return super().execute(context)
+        # # Place first defense
+        # # Assert that defense is placed
+        # if failed:
+        #     return StartPlacementFailed
             
 
 class _ExtendPlacement(state_machine.State):

@@ -3,6 +3,7 @@ import os
 import re
 from datetime import datetime
 from enum import Enum
+import dd2.utils.decorators as decorators
 
 import cv2.cv2 as cv2
 import numpy as np
@@ -43,7 +44,7 @@ def _custom_encoder(obj):
     elif issubclass(obj.__class__, np.ndarray):
         dict_ = {
             'data': obj.tolist(),
-        '__wrapper__': 'numpy.ndarray'
+            '__wrapper__': 'numpy.ndarray'
         }
     elif hasattr(obj, 'to_json'):
         dict_ = obj.to_json()
@@ -59,7 +60,7 @@ def _custom_decoder(dict_):
     # print(f"Decoding:\n {dict_}\n\n")
     serializing_cls_name = dict_.pop('__serializing_cls_name__', None)
     if serializing_cls_name:
-        cls = name_to_class[serializing_cls_name]
+        cls = decorators.name_to_class[serializing_cls_name]
         if hasattr(cls, 'from_json'):
             return getattr(cls, 'from_json')(dict_)
         if issubclass(cls, Enum):

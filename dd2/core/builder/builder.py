@@ -9,7 +9,7 @@ import dd2.io as io
 import dd2.utils.enums as enums
 from dd2.utils import utils
 
-from . import events
+from . import events, map_executor
 
 # Module level scope pointer
 this = sys.modules[__name__]
@@ -175,10 +175,7 @@ def build_sequence(sequence):
             print(f" + {event}")
         print()
         this.recorded_sequence.extend(sequence)
-
-    for event in sequence:
-        print(f"Firing event: {event}")
-        event.fire()
+    map_executor.execute(sequence)
 
 def build_sequence_by_name(prefix, exact=False):
     if exact:
@@ -186,9 +183,10 @@ def build_sequence_by_name(prefix, exact=False):
     else:
         filename, sequence = next((fn, seq) for fn, seq in this.loaded_maps.items() if fn.startswith(prefix))
     print(f"Building map: {filename}")
-    for event in sequence:
-        print(f"Firing event: {event}")
-        event.fire()
+    build_sequence(sequence)
+    # for event in sequence:
+    #     print(f"Firing event: {event}")
+    #     event.fire()
 
 def build_sequence_select():
     selected = io.keyboard.select_from_options_input(this.loaded_maps)

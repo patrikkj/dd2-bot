@@ -175,7 +175,7 @@ def run(session):
     
     print(f"State detected: {_state}")
     session['state'] = state_map[_state]
-    session['state'] = game.state.Idle
+    # session['state'] = game.state.Idle
 # session['state'] 
     while io._keyboard.this.status_code != io._keyboard.this.EXIT:
         cached_state = session['state']
